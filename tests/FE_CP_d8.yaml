@@ -1,0 +1,101 @@
+- name: "Lower byte of reg A is less"
+  input:
+    cpu:
+      registers:
+        a: 0x55
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xFE
+      - offset: 0x1
+        val: 0x66
+  output:
+    cpu:
+      registers:
+        a: 0x55
+        pc: 0xC002
+      flags:
+        common:
+          z: false
+          n: true
+          h: true
+          c: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0xFE
+      - offset: 0x1
+        val: 0x66
+
+- name: "Lower byte of reg A is more"
+  input:
+    cpu:
+      registers:
+        a: 0x5F
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xFE
+      - offset: 0x1
+        val: 0x66
+  output:
+    cpu:
+      registers:
+        a: 0x5F
+        pc: 0xC002
+      flags:
+        common:
+          z: false
+          n: true
+          h: false
+          c: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0xFE
+      - offset: 0x1
+        val: 0x66
+
+- name: "A is greater than d8"
+  input:
+    cpu:
+      registers:
+        a: 0xF0
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xFE
+      - offset: 0x1
+        val: 0x66
+  output:
+    cpu:
+      registers:
+        a: 0xF0
+        pc: 0xC002
+      flags:
+        common:
+          z: false
+          n: true
+          h: true
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xFE
+      - offset: 0x1
+        val: 0x66

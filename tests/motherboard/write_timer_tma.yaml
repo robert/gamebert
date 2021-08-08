@@ -1,0 +1,29 @@
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x06
+        pc: 0xC000
+    timer:
+      registers:
+        tma: 0xCD
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+  output:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x06
+        pc: 0xC002
+    timer:
+      registers:
+        tma: 0xAB
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB

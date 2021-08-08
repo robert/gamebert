@@ -1,0 +1,28 @@
+- name: "Standard case"
+  input:
+    cpu:
+      registers:
+        h: 0xC0
+        l: 0xDD
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0xE9
+      - offset: 0xDD
+        val: 0x78
+      - offset: 0xDE
+        val: 0x56
+
+  output:
+    cpu:
+      registers:
+        h: 0xC0
+        l: 0xDD
+        pc: 0x5678
+    internalRAM0:
+      - offset: 0x0
+        val: 0xE9
+      - offset: 0xDD
+        val: 0x78
+      - offset: 0xDE
+        val: 0x56

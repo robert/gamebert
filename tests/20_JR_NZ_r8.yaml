@@ -1,0 +1,80 @@
+- name: "Zero flag set"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+      flags:
+        common:
+          z: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0x20
+      - offset: 0x1
+        val: 0x37
+
+  output:
+    cpu:
+      registers:
+        pc: 0xC002
+      flags:
+        common:
+          z: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0x20
+      - offset: 0x1
+        val: 0x37
+
+- name: "Zero flag unset"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x20
+      - offset: 0x1
+        val: 0x37
+
+  output:
+    cpu:
+      registers:
+        pc: 0xC039
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x20
+      - offset: 0x1
+        val: 0x37
+
+- name: "Unsigned to signed conversion"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x20
+      - offset: 0x1
+        val: 0xFB
+
+  output:
+    cpu:
+      registers:
+        pc: 0xBFFD
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x20
+      - offset: 0x1
+        val: 0xFB

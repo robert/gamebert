@@ -1,0 +1,30 @@
+# Use 0x36 LF (HL) d8 to load a value into NonIOInternalRAM0
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        h: 0xFE
+        l: 0xB1
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+    nonIOInternalRAM0:
+      - offset: 0x11
+        val: 0x0
+  output:
+    cpu:
+      registers:
+        h: 0xFE
+        l: 0xB1
+        pc: 0xC002
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+    nonIOInternalRAM0:
+      - offset: 0x11
+        val: 0xAB

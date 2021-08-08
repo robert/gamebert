@@ -1,0 +1,57 @@
+- name: "Zero flag won't be set"
+  input:
+    cpu:
+      registers:
+        a: 0b10101010
+        c: 0b10011110
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xA1
+  output:
+    cpu:
+      registers:
+        a: 0b10001010
+        c: 0b10011110
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: true
+          c: false
+
+- name: "Zero flag will be set"
+  input:
+    cpu:
+      registers:
+        a: 0b10101010
+        c: 0b01010101
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xA1
+  output:
+    cpu:
+      registers:
+        a: 0b00000000
+        c: 0b01010101
+        pc: 0xC001
+      flags:
+        common:
+          z: true
+          n: false
+          h: true
+          c: false

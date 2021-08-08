@@ -1,0 +1,103 @@
+- name: "enable all"
+  input:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0xFF
+        pc: 0xC000
+      flags:
+        interrupts:
+          enabled:
+            vblank: false
+            stat: false
+            timer: false
+            serial: false
+            joypad: false
+          triggered:
+            vblank: false
+            stat: false
+            timer: false
+            serial: false
+            joypad: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xFF
+  output:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0xFF
+        pc: 0xC002
+      flags:
+        interrupts:
+          enabled:
+            vblank: true
+            stat: true
+            timer: true
+            serial: true
+            joypad: true
+          triggered:
+            vblank: false
+            stat: false
+            timer: false
+            serial: false
+            joypad: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xFF
+
+- name: "enable specific"
+  input:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0xFF
+        pc: 0xC000
+      flags:
+        interrupts:
+          enabled:
+            vblank: false
+            stat: false
+            timer: false
+            serial: false
+            joypad: false
+          triggered:
+            vblank: false
+            stat: false
+            timer: false
+            serial: false
+            joypad: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0b11001
+  output:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0xFF
+        pc: 0xC002
+      flags:
+        interrupts:
+          enabled:
+            vblank: true
+            stat: false
+            timer: false
+            serial: true
+            joypad: true
+          triggered:
+            vblank: false
+            stat: false
+            timer: false
+            serial: false
+            joypad: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0b11001

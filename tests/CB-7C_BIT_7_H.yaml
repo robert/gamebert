@@ -1,0 +1,27 @@
+- name: ""
+  input:
+    cpu:
+      registers:
+        h: 0b11001100
+        pc: 0xC000
+      flags:
+        common:
+          z: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0xCB
+      - offset: 0x1
+        val: 0x7C
+  output:
+    cpu:
+      registers:
+        h: 0b11001100
+        pc: 0xC002
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xCB
+      - offset: 0x1
+        val: 0x7C

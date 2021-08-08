@@ -1,0 +1,59 @@
+- name: "Carry flag not set initially"
+  input:
+    cpu:
+      registers:
+        a: 0b11110000
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x17
+  output:
+    cpu:
+      registers:
+        a: 0b11100000
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0x17
+
+- name: "Carry flag set initially"
+  input:
+    cpu:
+      registers:
+        a: 0b00001111
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0x17
+  output:
+    cpu:
+      registers:
+        a: 0b00011111
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x17

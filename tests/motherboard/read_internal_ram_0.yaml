@@ -1,0 +1,18 @@
+# Execute 0x04 INC B from InternalRAM0
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        b: 0x00
+        pc: 0xC00F
+    internalRAM0:
+      - offset: 0xF
+        val: 0x04
+  output:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xC010
+    internalRAM0:
+      - offset: 0xF
+        val: 0x04

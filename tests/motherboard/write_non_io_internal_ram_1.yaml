@@ -1,0 +1,125 @@
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x4D
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0x1
+  output:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x4D
+        pc: 0xC002
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+    nonIOInternalRAM1:
+      - offset: 0x1
+        val: 0xAB
+
+- name: "write 0x1 to FF50 and disable bootroom"
+  input:
+    bootromEnabled: true
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x50
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0x1
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0x98
+  output:
+    bootromEnabled: false
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x50
+        pc: 0xC002
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0x1
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0x98
+
+- name: "write 0x11 to FF50 and disable bootroom"
+  input:
+    bootromEnabled: true
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x50
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0x1
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0x98
+  output:
+    bootromEnabled: false
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x50
+        pc: 0xC002
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0x1
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0x98
+
+- name: "write non-magic value to FF50 and don't disable bootroom"
+  input:
+    bootromEnabled: true
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x50
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xF
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0xF
+  output:
+    bootromEnabled: true
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x50
+        pc: 0xC002
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xF
+    nonIOInternalRAM1:
+      - offset: 0x11
+        val: 0xF

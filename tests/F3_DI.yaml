@@ -1,0 +1,35 @@
+- name: "Interrupts start enabled"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+      masterInterruptsEnabled: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0xF3
+  output:
+    cpu:
+      registers:
+        pc: 0xC001
+      masterInterruptsEnabled: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xF3
+
+- name: "Interrupts start disabled"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+      masterInterruptsEnabled: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xF3
+  output:
+    cpu:
+      registers:
+        pc: 0xC001
+      masterInterruptsEnabled: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xF3

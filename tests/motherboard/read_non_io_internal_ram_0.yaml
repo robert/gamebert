@@ -1,0 +1,18 @@
+# Execute 0x04 INC B from NonIOInternalRAM0
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        b: 0x00
+        pc: 0xFEA7
+    nonIOInternalRAM0:
+      - offset: 0x7
+        val: 0x04
+  output:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xFEA8
+    nonIOInternalRAM0:
+      - offset: 0x7
+        val: 0x04

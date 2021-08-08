@@ -1,0 +1,22 @@
+# Execute 0x03 INC BC from Timer tac.
+#
+# Use INC BC instead of INC B for silly reasons.
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        b: 0x00
+        c: 0x05
+        pc: 0xFF07
+    timer:
+      registers:
+        tac: 0x03
+  output:
+    cpu:
+      registers:
+        b: 0x00
+        c: 0x06
+        pc: 0xFF08
+    timer:
+      registers:
+        tac: 0x03

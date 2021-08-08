@@ -1,0 +1,144 @@
+- name: "There is a full borrow"
+  input:
+    cpu:
+      registers:
+        a: 0x5F
+        b: 0x60
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x90
+  output:
+    cpu:
+      registers:
+        a: 0xFF
+        b: 0x60
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: true
+          h: false
+          c: true
+
+- name: "There is not a full borrow"
+  input:
+    cpu:
+      registers:
+        a: 0x60
+        b: 0x5F
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x90
+  output:
+    cpu:
+      registers:
+        a: 0x01
+        b: 0x5F
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: true
+          h: true
+          c: false
+
+- name: "There is a half borrow"
+  input:
+    cpu:
+      registers:
+        a: 0x33
+        b: 0x24
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x90
+  output:
+    cpu:
+      registers:
+        a: 0x0F
+        b: 0x24
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: true
+          h: true
+          c: false
+
+- name: "There is not a half borrow"
+  input:
+    cpu:
+      registers:
+        a: 0x35
+        b: 0x24
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x90
+  output:
+    cpu:
+      registers:
+        a: 0x11
+        b: 0x24
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: true
+          h: false
+          c: false
+
+- name: "Result is 0"
+  input:
+    cpu:
+      registers:
+        a: 0xAB
+        b: 0xAB
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x90
+  output:
+    cpu:
+      registers:
+        a: 0x0
+        b: 0xAB
+        pc: 0xC001
+      flags:
+        common:
+          z: true
+          n: true
+          h: false
+          c: false

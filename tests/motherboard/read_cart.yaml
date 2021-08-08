@@ -1,0 +1,15 @@
+- name: "Bootrom enabled, <=FF"
+  input:
+    cpu:
+      registers:
+        b: 0xBB
+        # The opcode at 0x3D of the bootrom is DEC B
+        pc: 0x3D
+  output:
+    cpu:
+      registers:
+        b: 0xBA
+        pc: 0x3E
+
+
+# TODO: cart tests

@@ -1,0 +1,20 @@
+# Execute 0x04 INC B from Timer div
+- name: "read PPU VRAM"
+  input:
+    cpu:
+      registers:
+        b: 0x00
+        pc: 0xFF04
+    timer:
+      registers:
+        div: 0x04
+  output:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xFF05
+    timer:
+      registers:
+        # INC B takes 4 cycles, which doesn't push us
+        # over the increment
+        div: 0x04

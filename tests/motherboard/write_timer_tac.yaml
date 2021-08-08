@@ -1,0 +1,30 @@
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x07
+        pc: 0xC000
+    timer:
+      registers:
+        tac: 0x03
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0b1011
+  output:
+    cpu:
+      registers:
+        h: 0xFF
+        l: 0x07
+        pc: 0xC002
+    timer:
+      registers:
+        # Only the first 3 bits are written
+        tac: 0b0011
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0b1011

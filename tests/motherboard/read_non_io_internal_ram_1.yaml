@@ -1,0 +1,17 @@
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        b: 0x00
+        pc: 0xFF4D
+    nonIOInternalRAM1:
+      - offset: 0x1
+        val: 0x04
+  output:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xFF4E
+    nonIOInternalRAM1:
+      - offset: 0x1
+        val: 0x04

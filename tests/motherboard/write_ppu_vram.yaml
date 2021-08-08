@@ -1,0 +1,32 @@
+# Use 0x36 LF (HL) d8 to load a value into PPU VRAM
+- name: "write PPU VRAM"
+  input:
+    cpu:
+      registers:
+        h: 0x80
+        l: 0x0F
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+    ppu:
+      vram:
+        - offset: 0xF
+          val: 0x0
+  output:
+    cpu:
+      registers:
+        h: 0x80
+        l: 0x0F
+        pc: 0xC002
+    internalRAM0:
+      - offset: 0x0
+        val: 0x36
+      - offset: 0x1
+        val: 0xAB
+    ppu:
+      vram:
+        - offset: 0xF
+          val: 0xAB

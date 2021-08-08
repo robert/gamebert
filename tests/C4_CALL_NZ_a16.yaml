@@ -1,0 +1,68 @@
+- name: "Zero flag not set"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+        sp: 0xC050
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xC4
+      - offset: 0x1
+        val: 0xCD
+      - offset: 0x2
+        val: 0xAB
+      - offset: 0x4E
+        val: 0x11
+      - offset: 0x4F
+        val: 0x22
+
+  output:
+    cpu:
+      registers:
+        pc: 0xABCD
+        sp: 0xC04E
+      flags:
+        common:
+          z: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xC4
+      - offset: 0x1
+        val: 0xCD
+      - offset: 0x2
+        val: 0xAB
+      - offset: 0x4E
+        val: 0x03
+      - offset: 0x4F
+        val: 0xC0
+
+
+- name: "Zero flag set"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+      flags:
+        common:
+          z: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0xC4
+      - offset: 0x1
+        val: 0xAB
+
+  output:
+    cpu:
+      registers:
+        pc: 0xC003
+      flags:
+        common:
+          z: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0xC4
+      - offset: 0x1
+        val: 0xAB

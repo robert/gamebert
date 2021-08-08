@@ -1,0 +1,18 @@
+# Execute 0x04 INC B from Timer tma
+- name: "standard case"
+  input:
+    cpu:
+      registers:
+        b: 0x00
+        pc: 0xFF06
+    timer:
+      registers:
+        tma: 0x04
+  output:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xFF07
+    timer:
+      registers:
+        tma: 0x04

@@ -1,0 +1,54 @@
+# - name: "zero flag/overflow"
+#   input:
+#     cpu:
+#       registers:
+#         b: 0xFF
+#         pc: 0xC000
+#       flags:
+#         common:
+#           z: false
+#           n: false
+#           h: false
+#           c: false
+#     internalRAM0:
+#       - offset: 0x0
+#         val: 0x04
+#   output:
+#     cpu:
+#       registers:
+#         b: 0x0
+#         pc: 0xC001
+#       flags:
+#         common:
+#           z: true
+#           n: false
+#           # TODO: is this correct
+#           h: false
+#           c: false
+
+- name: "Half carry"
+  input:
+    cpu:
+      registers:
+        b: 0xF
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x04
+  output:
+    cpu:
+      registers:
+        b: 0x10
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: true
+          c: false

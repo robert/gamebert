@@ -1,0 +1,66 @@
+# TODO: more tests of flag state afterwards, although I think I've got them right
+
+
+- name: "Carry flag unset"
+  input:
+    cpu:
+      registers:
+        a: 0x11
+        c: 0x22
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x89
+  output:
+    cpu:
+      registers:
+        a: 0x33
+        c: 0x22
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x89
+
+- name: "Carry flag set"
+  input:
+    cpu:
+      registers:
+        a: 0x11
+        c: 0x22
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: true
+    internalRAM0:
+      - offset: 0x0
+        val: 0x89
+  output:
+    cpu:
+      registers:
+        a: 0x34
+        c: 0x22
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x89

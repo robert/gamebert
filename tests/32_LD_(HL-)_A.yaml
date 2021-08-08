@@ -1,0 +1,50 @@
+- name: "Standard case"
+  input:
+    cpu:
+      registers:
+        a: 0x45
+        h: 0xC1
+        l: 0x23
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x0
+        val: 0x32
+      - offset: 0x123
+        val: 0x99
+
+  output:
+    cpu:
+      registers:
+        a: 0x45
+        h: 0xC1
+        l: 0x22
+        pc: 0xC001
+    internalRAM0:
+      - offset: 0x0
+        val: 0x32
+      - offset: 0x123
+        val: 0x45
+
+# Not tested - you can't write to 00 so this can't happen
+#
+# - name: "Undeflow when HL == 0"
+#   input:
+#     cpu:
+#       registers:
+#         a: 0x45
+#         h: 0x00
+#         l: 0x00
+#         pc: 0xC000
+#     internalRAM0:
+#       - offset: 0x0
+#         val: 0x32
+#       - offset: 0x123
+#         val: 0x99
+#
+#   output:
+#     cpu:
+#       registers:
+#         a: 0x45
+#         h: 0xFF
+#         l: 0xFF
+#         pc: 0xC001

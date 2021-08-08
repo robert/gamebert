@@ -1,0 +1,29 @@
+- name: "Standard case"
+  input:
+    cpu:
+      registers:
+        a: 0x55
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xBF
+  output:
+    cpu:
+      registers:
+        a: 0x55
+        pc: 0xC001
+      flags:
+        common:
+          z: true
+          n: true
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0xBF

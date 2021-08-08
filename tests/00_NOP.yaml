@@ -1,0 +1,13 @@
+- name: "NOP_00"
+  input:
+    cpu:
+      registers:
+        pc: 0xC000
+    internalRAM0:
+      - offset: 0x00
+        val: 0x00
+
+  output:
+    cpu:
+      registers:
+        pc: 0xC001

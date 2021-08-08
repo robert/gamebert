@@ -1,0 +1,29 @@
+- name: ""
+  input:
+    cpu:
+      registers:
+        d: 0x12
+        e: 0x34
+        pc: 0xC000
+        sp: 0xC0A0
+    internalRAM0:
+      - offset: 0x0
+        val: 0xD1
+      - offset: 0xA0
+        val: 0xAB
+      - offset: 0xA1
+        val: 0xCD
+  output:
+    cpu:
+      registers:
+        d: 0xCD
+        e: 0xAB
+        pc: 0xC001
+        sp: 0xC0A2
+    internalRAM0:
+      - offset: 0x0
+        val: 0xD1
+      - offset: 0xA0
+        val: 0xAB
+      - offset: 0xA1
+        val: 0xCD

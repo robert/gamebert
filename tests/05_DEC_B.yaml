@@ -1,0 +1,80 @@
+- name: "zero flag"
+  input:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x05
+  output:
+    cpu:
+      registers:
+        b: 0x00
+        pc: 0xC001
+      flags:
+        common:
+          z: true
+          n: true
+          h: false
+          c: false
+
+- name: "no zero flag"
+  input:
+    cpu:
+      registers:
+        b: 0x02
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x05
+  output:
+    cpu:
+      registers:
+        b: 0x01
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: true
+          h: false
+          c: false
+
+- name: "integer underflow"
+  input:
+    cpu:
+      registers:
+        b: 0x0
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: true
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x05
+  output:
+    cpu:
+      registers:
+        b: 0xFF
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: true
+          h: true
+          c: false

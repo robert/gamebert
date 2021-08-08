@@ -1,0 +1,98 @@
+- name: "No carry or half-carry"
+  input:
+    cpu:
+      registers:
+        b: 0xBB
+        c: 0xAA
+        h: 0x22
+        l: 0x11
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x09
+  output:
+    cpu:
+      registers:
+        b: 0xBB
+        c: 0xAA
+        h: 0xDD
+        l: 0xBB
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+
+- name: "Half-carry"
+  input:
+    cpu:
+      registers:
+        b: 0xBB
+        c: 0xAA
+        h: 0x25
+        l: 0x11
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x09
+  output:
+    cpu:
+      registers:
+        b: 0xBB
+        c: 0xAA
+        h: 0xE0
+        l: 0xBB
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: true
+          c: false
+
+- name: "Full-carry"
+  input:
+    cpu:
+      registers:
+        b: 0xEB
+        c: 0xAA
+        h: 0x22
+        l: 0x11
+        pc: 0xC000
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: false
+    internalRAM0:
+      - offset: 0x0
+        val: 0x09
+  output:
+    cpu:
+      registers:
+        b: 0xEB
+        c: 0xAA
+        h: 0x0D
+        l: 0xBB
+        pc: 0xC001
+      flags:
+        common:
+          z: false
+          n: false
+          h: false
+          c: true
